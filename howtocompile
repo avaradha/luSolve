@@ -1,0 +1,2 @@
+The code has been compiled successfully in silo against the standard BLAS library. I have compiled it against the Intel MKL BLAS libraries in my local environment. I have the make.inc file with me. It has the hard coded path to my Intel MKL library. If required I can provide the same.
+--Aravindh Varadharaju

@@ -1,0 +1,7 @@
+100   800    100          1d1               32  128    16
+
+--------------------------
+The variables above are:
+--------------------------
+min_n   max_n    stepsize  total_flops_in_timing_block   blower  bupper  bstride
+

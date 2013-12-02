@@ -1,0 +1,10 @@
+Report
+------
+
+1. In the implemented LU4 routine, at each step, one column is handled at a time i.e., one column of L and one column of U replaces the original column. For the elements above the diagonal, DTRSV does the changes. For the elements on the diagonal and below, DGEMV does the changes. Since we are dealing with one column at a time, the performance would be good if the column can in the cache and hence would result in lesser cache miss. However, performance of Level 1 and Level 2 BLAS is impacted by the ratio of the operations to the amount of data transfer. This ratio should be high for high performance or flop rate. 
+
+2. The performance of level 3 BLAS is not cache limited. This evident from the graph plotted from the results. As the block size increases the flop rate increases. When the block size is more than 48, the average flop rate is 1.7 Gflops/sec. But when it is at 32, the flop rate is less than 1.3 Gflops/sec. So this proves that the performance of level 3 BLAS is not cache limited.
+
+3. What seems to be a good or even the best block size to use? I think this depends on the size of the matrix being dealt as well. When the size of matrix is <= 600, the block size of 64 seems to perform better on the number of operation being performed. Once the matrix size increases beyond 600, block size of 48 seems to give a better flop rate ~1.8 Gflops/sec. So on an average, block size of 48/64 seems to be a good block size to use.
+
+4. When the block size is higher than the rank of the matrix, LU4 is directly called. Running with block size higher than the rank of the matrix, the timings show that the block size of 32 is being impacted by the cachesize. For the block size of 32 the performance drops as the matrix size increases whereas the other block sizes perform better.
